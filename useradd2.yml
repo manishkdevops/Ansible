@@ -1,0 +1,50 @@
+--- 
+- name: Managing users and groups.
+  hosts: all
+  become: true
+  vars:
+    password: mySecret
+  tasks:
+    - name: Add a single user called Greta Grace.
+      user:
+        name: gretagrace
+        comment: Greta Grace
+    - name: Add user amit with a password.
+      user:
+        name: amit
+        password: "{{ password | password_hash('sha512') }}"
+        update_password: on_create
+    - name: Add a group named nehraclasses.
+      group:
+        name: nehraclasses
+        state: present
+    - name: Add a user Ashish and add them to group nehraclasses.
+      user:
+        name: ashish
+        groups: nehraclasses
+        append: yes
+    - name: Add user Rahul and generate his ssh keys.
+      user:
+        name: rahul 
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id.rsa
+    - name: Add user noHome with no home directory and set account password on cretain dates.
+      user:
+        name: noHome
+        create_home: no
+        expires: 1590155615
+    - name: Add user Suraj having login shell as sh and add them to a group nehraclasses.
+      user: 
+        name: suraj
+        shell: /bin/sh
+        groups: nehraclasses
+        append: yes
+    - name: Add the user "Vijay Sharma" with a specific uid as 1090 having usrename as vijay and having home directory as /home/vijaysharma.
+      user:
+        name: vijay
+        uid: 1100
+        create_home: yes
+        home: /home/vijaysharma
+...
+

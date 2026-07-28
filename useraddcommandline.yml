@@ -1,0 +1,11 @@
+---
+- name: Command line variable examples.
+  hosts: web
+  become: true
+  tasks:
+    - name: Adding users and applying password.
+      user:
+        name: "{{ user_name }}"
+        state: present
+        password: "{{ password | password_hash ('sha512') }}"
+...

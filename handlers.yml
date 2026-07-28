@@ -1,0 +1,17 @@
+---
+- name: Install Apache on RHEL server.
+  hosts: all
+  become: true
+  tasks:
+    - name: Install the latest version of apache.
+      yum:
+        name: httpd
+        state: latest
+      notify:
+        - Start Service
+  handlers:
+    - name: Start Service
+      service:
+        name: httpd
+        state: started
+...

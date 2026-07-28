@@ -1,0 +1,11 @@
+---
+- name: Install tree if mem is 2G
+  hosts: all
+  become: true
+  tasks:
+    - name: Install tree
+      yum:
+        name: tree
+        state: installed
+      when: ansible_memtotal_mb > 500
+...

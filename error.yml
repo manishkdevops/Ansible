@@ -1,0 +1,23 @@
+---
+- name: Checking httpd service status
+  hosts: all
+  become: true
+  tasks:
+    - name: Checking httpd
+      command: systemctl is-active httpd
+      register: abc
+      ignore_errors: yes
+    - name: Print the output.
+      debug:
+        msg: "{{ abc }}"
+    - name: Start httpd service if not running.
+      service:
+        name: httpd
+        state: started
+      when: abc.rc != 0
+    - name: Restart the service if already running.
+      service:
+        name: httpd
+        state: restarted
+      when: abc.rc == 0
+...

@@ -1,0 +1,17 @@
+---
+- name: Insatalling httpd service
+  become: true
+  hosts: all
+  tasks:
+    - name: Installing httpd service
+      yum:
+        name: httpd
+        state: latest
+    - name: Checking apache version and storing it in the abc variable.
+      command: httpd -v
+      register: abc
+    - name: Show the message
+      debug:
+        var: abc.stdout
+...
+

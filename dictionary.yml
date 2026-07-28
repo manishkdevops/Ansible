@@ -1,0 +1,21 @@
+---
+- name: Creating users.
+  hosts: web
+  become: true
+  user: ansible
+  connection: ssh
+  tasks:
+    - name: Create three users.
+      user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        state: present
+      loop:
+        - name: noida
+          uid: 1050
+        - name: mumbai
+          uid: 1051
+        - name: delhi
+          uid: 1052
+...
+

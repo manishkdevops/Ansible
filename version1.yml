@@ -1,0 +1,12 @@
+---
+- name: Condition playbook example.
+  hosts: all
+  become: true
+  tasks:
+    - name: Install ftp package if OS is RHEL or CentOS.
+      yum:
+        name: ftp
+        state: installed
+      when: ansible_distribution == "RedHat" or "CentOS"
+...
+

@@ -1,0 +1,11 @@
+---
+- name: Mananging volume group.
+  hosts: test
+  become: true
+  tasks: 
+  - name: Activate a logical volume
+    community.general.lvol:
+      vg: volg
+      lv: mylv2
+      active: true
+...

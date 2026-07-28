@@ -1,0 +1,11 @@
+---
+- name: failed when example
+  hosts: all
+  become: true
+  tasks:
+    - name: Install apache
+      service: 
+        name: httpd
+        state: installed
+      failed_when: ansible_distribution == "Ubuntu"
+...

@@ -1,0 +1,12 @@
+---
+- name: Managing storage using Ansible.
+  hosts: test
+  become: true
+  tasks:
+    - name: Set/Reset UUID on /dev/xvdb for xfs filesystem.
+      filesystem:
+        fstype: ext3
+        device: /dev/xvdb3
+        uuid: generate
+...
+

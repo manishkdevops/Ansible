@@ -1,0 +1,11 @@
+---
+- name: Conditional playbook example.
+  hosts: all
+  become: true
+  tasks:
+    - name: Install the apache web server on the RHEL based machine and having major version 9 or CentsOS based machine having major version 8.
+      yum:
+        name: httpd
+        state: installed
+      when: (ansible_distribution == "RedHat" and ansible_distribution_major_version == "9") or (ansible_distribution == "CentOS" and ansible_distribution_major_version == "8")        
+...

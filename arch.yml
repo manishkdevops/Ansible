@@ -1,0 +1,12 @@
+---
+- name: Print system arch of nodes.
+  hosts: all
+  become: true
+  tasks:
+    - name: Store systems arch.
+      command: uname -m
+      register: abc
+    - name: Print arch details
+      debug:
+        var: abc.stdout
+

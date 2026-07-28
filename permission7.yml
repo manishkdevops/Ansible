@@ -1,0 +1,13 @@
+---
+- name: Managing the file permission using Ansible.
+  hosts: all
+  become: true
+  tasks:
+    - name: Grant user ansible read aceess to a file via acl.
+      ansible.posix.acl:
+        path: /etc/linux.conf
+        entity: ansible
+        etype: user
+        permissions: r
+        state: present
+...

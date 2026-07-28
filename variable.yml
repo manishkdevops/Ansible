@@ -1,0 +1,8 @@
+---
+- name: Printing variables
+  hosts: web
+  tasks:
+    - name: Ansible built-in variable
+      debug:
+         msg: "{{ inventory_hostname }}"
+...

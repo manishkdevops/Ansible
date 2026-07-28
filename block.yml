@@ -1,0 +1,15 @@
+---
+- name: Ansible block example.
+  hosts: all
+  tasks:
+    - block:
+        - name: Install httpd package.
+          yum:
+           name: httpd
+           state: latest
+        - name: Start httpd package.
+          service:
+           name: httpd
+           state: started
+      become: yes
+...

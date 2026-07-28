@@ -1,0 +1,22 @@
+---
+- name: This playbook is being written for adding multiple users and groups using hash loop.
+  become: true
+  hosts: all
+  tasks:
+    - name: Adding secondary groups.
+      group:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - sun
+        - uix
+    - name: Adding local user accounts.
+      user:
+        name: "{{ item.usr }}"
+        state: present
+        groups: "{{ item.grp }}"
+      loop:
+        - { usr: pen, grp: sun }
+        - { usr: book, grp: uix }
+...
+

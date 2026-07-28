@@ -1,0 +1,12 @@
+---
+- name: Standard loop playbook to add user account with admin access.
+  hosts: all
+  become: true
+  tasks:
+    - name: Adding users with admin access
+      user:
+        name: "{{ item }}"
+        state: present
+        group: wheel
+      with_lines: cat /home/ansible/names
+...

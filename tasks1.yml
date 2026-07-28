@@ -1,0 +1,30 @@
+---
+- name: daily tasks playbook.
+  hosts: web
+  gather_facts: false
+  user: ansible
+  become: true
+  tasks:
+    - name: Create directory /tmp/testdir
+      file:
+          path: /tmp/testdir
+          state: directory
+    - name: Copy /etc/fstab file to /tmp/testdir
+      copy:
+          src: /etc/fstab
+          dest: /tmp/testdir
+    - name: Installing packages.
+      yum:
+         name: 
+           - httpd
+           - wget
+    - name: Starting and enabling httpd service.
+      service:
+            name: httpd
+            state: started
+            enabled: true
+
+    - name: Installing firewall
+      import_tasks: /home/ansible/playbook/firewalld.yml
+...
+

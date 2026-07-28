@@ -1,0 +1,11 @@
+---
+- name: Schedule future task.
+  become: true
+  hosts: test
+  tasks:
+    - name: Remove an old job from crontab.
+      ansible.builtin.cron:
+        name: "Users login"
+        user: ansible
+        state: absent
+...

@@ -1,0 +1,12 @@
+---
+- name: Managing volume group.
+  hosts: test
+  become: true
+  tasks:
+    - name: Resize the logical volume to % of VG
+      community.general.lvol:
+        vg: volg
+        lv: mylv2
+        size: 20%VG
+        force: true
+...

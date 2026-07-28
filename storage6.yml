@@ -1,0 +1,10 @@
+---
+- name: Managing storage space using Ansible
+  hosts: test
+  become: true
+  tasks:
+    - name: Erase filesystem from partition table.
+      filesystem:
+        device: /dev/xvdb1
+        state: absent
+...

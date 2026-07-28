@@ -1,0 +1,11 @@
+---
+- name: Managing Storage Space using Ansible.
+  hosts: test
+  become: true
+  tasks:
+    - name: Make xfs filesystems on /dev/xvdb
+      filesystem:
+        device: /dev/xvdb1
+        fstype: ext4
+        force: true
+...

@@ -1,0 +1,11 @@
+---
+- name: Managing the file permission using ansible.
+  hosts: all
+  become: true
+  tasks:
+    - name: Create hard link
+      file:
+        src: /etc/redhat-release
+        dest: /tmp/hardlink
+        state: hard
+...

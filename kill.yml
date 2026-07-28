@@ -1,0 +1,18 @@
+---
+- name: Process management using Asnible playbook.
+  hosts: all
+  become: yes
+  tasks:
+    - name: Get running process list from remote hosts.
+      ignore_errors: yes
+      shell: "ps -few |grep infinite |awk '{print $2}'"
+      register: running_processes
+    - name: Printing the process IDs of the infinite processes.
+      debug:
+        msg: "{{ running_processes }}"
+    - name: Kill all the running infinite processes.
+      ignore_errors: yes
+      shell: "kill {{ item }}"
+      with_items: "{{ running_processes.stdout_lines }}"
+...
+

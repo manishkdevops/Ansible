@@ -1,0 +1,11 @@
+---
+- name: Schedule future jobs
+  hosts: test
+  become: true
+  tasks:
+    - name: Remove a cron file under /etc/cron.d
+      ansible.builtin.cron:
+        name: yum autoupgrade
+        cron_file: ansible_yum-autoupdate
+        state: absent
+...

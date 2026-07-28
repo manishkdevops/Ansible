@@ -1,0 +1,12 @@
+---
+- name: Managing volume group.
+  hosts: test
+  become: true
+  tasks:
+    - name: Create a snapshot for lvm mylv2
+      community.general.lvol:
+        vg: volg
+        lv: mylv2
+        snapshot: snap1
+        size: 20m
+...

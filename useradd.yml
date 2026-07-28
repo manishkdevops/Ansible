@@ -1,0 +1,15 @@
+---
+- name: Creating users.
+  hosts: web
+  become: true
+  vars_prompt:
+    - name: user_name
+      prompt: Please enter your name.
+      private: no
+    - name: password
+      prompt: Please enter your password.
+      private: yes
+  tasks:
+    - debug:
+        msg: "The username is {{ user_name }} and password is {{ password}}."
+...

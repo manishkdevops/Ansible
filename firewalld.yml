@@ -1,0 +1,6 @@
+---
+- name: Installing firewall service
+  yum: 
+    name: firewalld
+    state: installed
+...

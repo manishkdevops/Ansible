@@ -1,0 +1,22 @@
+---
+- name: Block and rescue example
+  hosts: all
+  become: yes
+  tasks:
+    - block:
+        - name: Download epel package.
+          command: wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+        - name: Install epel package.
+          yum:
+           name: epel-release-latest-9.noarch.rpm
+           state: installed
+        - name: Verify epel repository file.
+          shell: ls /etc/yum.repos.d/epel.repo
+      when: ansible_distribution_major_version == "9"
+      rescue:
+        - name: Copying EPEL repository file from the Ansible control node.
+          copy:
+            src: /etc/yum.repos.d/epel.repo
+            dest: /etc/yum.repos.d/epel.repo
+...
+

@@ -1,0 +1,10 @@
+---
+- name: MOTD file creation playbook.
+  hosts: all
+  become: true
+  tasks:
+    - name: Copying the MOTD file from ansible server to target nodes.
+      template:
+        src: /home/ansible/motd.j2
+        dest: /etc/motd
+...

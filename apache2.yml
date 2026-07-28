@@ -1,0 +1,38 @@
+--- 
+- name: Ansible tags example.
+  hosts: all
+  become: true
+  tasks:
+    - name: Installing httpd package.
+      yum:
+        name: httpd
+        state: installed
+      tags: ab_tag
+    - name: Starting and enabling httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: true
+      tags: abc_tag
+    - name: Configure httpd web page.
+      copy:
+        content: "Hello World. \n"
+        dest: /var/www/html/index.html
+      tags: abcd_tag
+    - name: Restart apache service.
+      service:
+        name: httpd
+        state: restarted
+      tags: abcde_tag
+    - name: Allow firewall traffic
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+      tags: abcdef_tag
+    - name: Reload firewalld and httpd service
+      service:
+         name: httpd
+         state: reloaded
+      tags: always
+...

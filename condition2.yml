@@ -1,0 +1,17 @@
+---
+- name: Ansible playbook to check the OS version and install the vsfdtp package.
+  hosts: all
+  become: true
+  tasks:
+    - name: Checking the machine OS version.
+      command: cat /etc/redhat-release
+      register: os_version
+    - name: Print the message.
+      debug:
+        var: os_version
+    - name: Installing vsftpd service if the OS version is 9.3
+      yum:
+        name: vsftpd
+        state: installed
+      when: os_version.stdout == "Red Hat Enterprise Linux release 9.3 (Plow)"
+...

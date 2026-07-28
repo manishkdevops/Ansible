@@ -1,0 +1,17 @@
+---
+- name: Ansible jinja2 template with conditions example playbook.
+  hosts: all
+  become: true
+  vars:
+    fruits:
+      - mango
+      - papaya
+      - banana
+      - litchi
+      - apple
+  tasks:
+    - name: Using loop with jinja2 template
+      template:
+          src: /home/ansible/fruits.j2
+          dest: /home/ansible/fruits.txt
+...

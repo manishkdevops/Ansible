@@ -1,0 +1,12 @@
+---
+- name: Managing partition on disk.
+  hosts: test
+  become: true
+  tasks:
+    - name: Create a primary partition with the size of 1GiB on /dev/xvdb disk.
+      community.general.parted:
+        device: /dev/xvdb
+        number: 1
+        state: present
+        part_end: 1GiB
+...

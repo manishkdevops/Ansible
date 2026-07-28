@@ -1,0 +1,15 @@
+---
+- name: Schedule future jobs
+  hosts: test
+  become: true
+  tasks:
+    - name: Create a cron file under /etc/cron.d
+      ansible.builtin.cron:
+        name: yum autoupgrade
+        weekday: "2"
+        minute: "0"
+        hour: "12"
+        user: ansible
+        job: "YUMINTERACTIVE=0 /usr/sbin/yum-autoupdate"
+        cron_file: ansible_yum-autoupdate
+...

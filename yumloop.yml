@@ -1,0 +1,16 @@
+---
+- name: yum loop
+  hosts: all
+  become: yes
+  tasks:
+    - name: Installing packages using yum loop 
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - zsh
+        - vsftpd
+        - tree
+        - httpd
+        - ftp
+...

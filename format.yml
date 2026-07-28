@@ -1,0 +1,17 @@
+---
+- name: Installing package and creating directory.
+  user: ansible
+  become: true
+  hosts: web
+  tasks:
+    - name: Single line format
+      file: path=/tmp/testdir state=directory
+    - name: Multi line format
+      copy: src=/etc/fstab
+            dest=/tmp/testdir
+    - name: Dictionary format
+      service:
+        name: httpd
+        state: started
+        enabled: true
+...

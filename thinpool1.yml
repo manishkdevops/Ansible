@@ -1,0 +1,12 @@
+---
+- name: Managing volume group.
+  hosts: test
+  become: true
+  tasks:
+    - name: Create a thin volume of 600M
+      community.general.lvol:
+        vg: volg
+        lv: mylv5
+        thinpool: testpool
+        size: 600m
+...

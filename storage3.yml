@@ -1,0 +1,13 @@
+---
+- name: Managing Storage Space using Ansible.
+  hosts: test
+  become: true
+  tasks:
+    - name: Create a new primary partition with the size of 1GiB from the disk end.
+      parted:
+        device: /dev/xvdb
+        number: 3
+        state: present
+        fs_type: ext4
+        part_start: -1GiB
+...

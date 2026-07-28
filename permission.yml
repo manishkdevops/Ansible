@@ -1,0 +1,16 @@
+---
+- name: Managing the file permission using Ansible.
+  hosts: all
+  become: true
+  tasks:
+    - name: Create a new file with permission.
+      file:
+        path: /tmp/test.txt
+        owner: ansible
+        state: touch
+        mode: 0755
+      register: task1
+    - name: Print the result of task1
+      debug:
+        msg: "{{ task1 }}"
+...

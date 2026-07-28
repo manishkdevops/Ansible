@@ -1,0 +1,10 @@
+---
+- name: Yum repository management.
+  hosts: test
+  become: true
+  tasks:
+    - name: Install "Development tools" package group.
+      yum:
+        name: "@Development tools"
+        state: present
+...

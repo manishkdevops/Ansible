@@ -1,0 +1,13 @@
+---
+- name: Managing the file permission using Ansible.
+  hosts: all
+  become: true
+  tasks:
+    - name: Create symbolic link
+      file:
+        src: /etc/redhat-release
+        dest: /tmp/link
+        owner: ansible
+        group: ansible
+        state: link
+...

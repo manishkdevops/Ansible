@@ -1,0 +1,25 @@
+---
+- name: String variable.
+  hosts: web
+  become: yes
+  vars_files: /home/ansible/vars.yml
+  tasks:
+    - name: Installing apache server.
+      yum:
+        name: "{{ apache }}"
+        state: installed
+    - name: Starting and enabling service.
+      service:
+        name: "{{ apache }}"
+        state: started
+        enabled: true
+    - name: Creating "{{ apache_path }}" directory.
+      file:
+        path: "{{ apache_path }}"
+        state: directory
+    - name: Create index.html page inside "{{ apache_path }}" directory.
+      copy:
+        content: "Welcome to Ericsson.\n"
+        dest: "{{ apache_path }}/index.html"
+...
+

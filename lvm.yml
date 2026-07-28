@@ -1,0 +1,11 @@
+---
+- name: Managing volume group.
+  hosts: test
+  become: true
+  tasks:
+    - name: Create a logical volume of 200M
+      community.general.lvol:
+        vg: volg
+        lv: mylv1
+        size: 200
+...

@@ -1,0 +1,11 @@
+---
+- name: Managing volume group.
+  hosts: test
+  become: true
+  tasks:
+    - name: Create a volume group on the top of /dev/xvdb1 with physical extend size 32MiB
+      community.general.lvg:
+        vg: myvg
+        pvs: /dev/xvdb1
+        pesize: 32
+...

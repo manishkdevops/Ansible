@@ -1,0 +1,10 @@
+---
+- name: Managing volume group.
+  hosts: test
+  become: true
+  tasks:
+    - name: Remove a volume group.
+      community.general.lvg:
+        state: inactive
+        vg: volg
+...

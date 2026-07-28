@@ -1,0 +1,9 @@
+---
+- hosts: web
+  vars:
+    abcd: Hello World, My name is Manish.
+  tasks:
+    - name: Printing user variables.
+      debug:
+       msg: "{{ abcd }}"
+...

@@ -1,0 +1,17 @@
+---
+- name: Adding users.
+  hosts: all
+  become: true
+  tasks:
+    - name: adding new users and then addning into secondary group.
+      user:
+        name: "{{ item }}"
+        state: present
+        group: wheel
+      loop:
+        - ram
+        - rahim
+        - karim
+...
+
+

@@ -1,0 +1,18 @@
+---
+- name: Example of condition in Ansible.
+  hosts: all
+  become: true
+  tasks:
+    - name: Checking the existence of the file.
+      stat:
+        path: /tmp/bbbb
+      register: xyz
+    - name: Print the message
+      debug:
+        var: xyz.stat.exists
+    - name: Creating the file if doesn't exist.
+      copy:
+        content: "Hello World."
+        dest: /tmp/bbbb
+      when: xyz.stat.exists == false
+...

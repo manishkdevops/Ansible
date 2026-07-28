@@ -1,0 +1,11 @@
+---
+- name: Managing volume group.
+  hosts: test
+  become: true
+  tasks:
+    - name: Create a thin pool of 100M
+      community.general.lvol:
+        vg: volg
+        thinpool: testpool
+        size: 100m
+...

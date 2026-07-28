@@ -1,0 +1,14 @@
+---
+- name: Managing Storage Space using Ansible.
+  hosts: test
+  become: true
+  tasks:
+    - name: Create a new partition for lvm.
+      parted:
+        device: /dev/xvdb
+        number: 2
+        flags: [ lvm ] 
+        state: present
+        part_start: 1GiB
+        part_end: 4GiB
+...

@@ -1,0 +1,12 @@
+---
+- name: Managing Storage Space using Ansible.
+  hosts: test
+  become: true
+  tasks:
+    - name: Create a new ext4 primary partition on /dev/xvdb disk.
+      parted:
+        device: /dev/xvdb
+        number: 1
+        state: present
+        fs_type: ext4
+...

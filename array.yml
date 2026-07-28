@@ -1,0 +1,17 @@
+---
+- name: Example of listing variables.
+  hosts: web
+  become: true
+  vars:
+    mypkg:
+      - tree
+      - ftp
+      - zsh
+      - telnet
+      - vsftpd
+  tasks:
+    - name: Installing telnet pkg.
+      yum: 
+        name: "{{ mypkg [3] }}"
+        state: installed
+...

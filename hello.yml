@@ -1,0 +1,10 @@
+---
+- name: Hello World.
+  hosts: all
+  become: true
+    #gather_facts: false
+  tasks:
+    - name: Printing Hello World.
+      debug:
+        msg: Hello ansible world.
+...

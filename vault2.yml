@@ -1,0 +1,12 @@
+---
+- name: Ansible vault
+  become: true
+  hosts: all
+  vars_files:
+    - /home/ansible/passwd.yml
+  tasks:
+    - name: Creating users and setting its encrypted password.
+      user:
+        name: matt
+        password: "{{ pw | password_hash ('sha512') }}"
+...

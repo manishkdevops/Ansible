@@ -1,0 +1,10 @@
+---
+- name: Yum repository management.
+  hosts: test
+  become: true
+  tasks:
+    - name: Remove repository.
+      yum_repository:
+        name: epel
+        state: absent
+...

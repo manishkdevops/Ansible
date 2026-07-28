@@ -1,0 +1,11 @@
+---
+- name: Yum repository management.
+  hosts: test
+  become: true
+  tasks:
+    - name: Install nginx rpm for a remote repo
+      yum:
+        name: http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.e16.ngx.noarch.rpm
+        state: latest
+        disable_gpg_check: true
+...

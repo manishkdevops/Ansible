@@ -1,0 +1,10 @@
+---
+- name: Managing the file permission using Ansible.
+  hosts: all
+  become: true
+  tasks:
+    - name: Create a directory with the owner & group owner as root having the name of /work & sticky bit set with full permission for everyone.
+      file:
+        path: /work
+        state: absent
+...

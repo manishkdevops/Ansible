@@ -1,0 +1,16 @@
+---
+- name: Installing httpd package.
+  hosts: all
+  become: true
+  tasks:
+    - name: Installing httpd on RHEL machines.
+      yum:
+        name: httpd
+        state: installed
+      when: ansible_os_family == "RedHat"
+    - name: Installing apache on Ubuntu machines.
+      yum:
+        name: httpd
+        state: installed
+      when: ansible_os_family == "Ubuntu"
+...

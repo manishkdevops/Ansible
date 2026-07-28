@@ -1,0 +1,12 @@
+---
+- name: Registring variable.
+  hosts: all
+  become: true
+  tasks:
+    - name: Gathering hostname
+      command: hostname
+      register: abcd
+    - name: Printing stored varibale
+      debug:
+        var: abcd.stdout
+...
